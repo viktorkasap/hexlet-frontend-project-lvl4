@@ -21,7 +21,7 @@ const rollbarConfig = {
   captureUnhandledRejections: true,
 };
 
-console.log('rollbarConfig', rollbarConfig);
+console.log('rollbarConfig:', rollbarConfig);
 
 const clearRU = leoProfanity.getDictionary('ru');
 leoProfanity.add(clearRU);
