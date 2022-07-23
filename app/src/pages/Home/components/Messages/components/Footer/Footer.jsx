@@ -8,11 +8,8 @@ import leoProfanity from 'leo-profanity';
 
 
 import { sendMessage } from '../../../../../../api';
-import { useRollbar } from '@rollbar/react';
 
 export const Footer = () => {
-  const rollbar = useRollbar();
-  
   const ICON_SIZE = 20;
   const { t } = useTranslation();
   const { username } = JSON.parse(localStorage.getItem('userId'));
@@ -21,9 +18,6 @@ export const Footer = () => {
   const formik = useFormik({
     initialValues: { message: '' },
     onSubmit: ({ message }, { resetForm }) => {
-  
-      rollbar.error('Empty message22222');
-      console.log('----222222');
       
       if (message !== '') {
         const cleanedMessage = leoProfanity.clean(message);

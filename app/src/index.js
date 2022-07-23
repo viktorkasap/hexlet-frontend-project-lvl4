@@ -13,7 +13,7 @@ import reportWebVitals from './reportWebVitals';
 import './assets/css/index.css';
 
 const rollbarConfig = {
-  accessToken: process.env.ROLLBAR_TOKEN,
+  accessToken: process.env.REACT_APP_ACCESS_TOKEN,
   environment: 'production',
   captureUncaught: true,
   captureUnhandledRejections: true,
