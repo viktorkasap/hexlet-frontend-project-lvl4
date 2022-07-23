@@ -14,6 +14,7 @@ export const ru = {
       created: 'Канал создан',
       renamed: 'Канал переименован',
       removed: 'Канал удалён',
+      manage: 'Управление каналом',
     },
     login: {
       username: 'Ваш ник',
@@ -56,5 +57,8 @@ export const ru = {
       remove: 'Удалить канал',
       sure: 'Уверены',
     },
+    message: {
+      new: 'Новое сообщение',
+    }
   },
 };

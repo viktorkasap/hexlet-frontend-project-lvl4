@@ -78,7 +78,6 @@ export const Add = ({ onHide }) => {
             name="name"
             placeholder={t('modal.name')}
             ref={inputRef}
-            autoComplete="current-password"
             value={values.name}
             onChange={handleChange}
             isInvalid={(touched.name && !!errors.name)}

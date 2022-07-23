@@ -40,6 +40,7 @@ export const Footer = () => {
               name="message"
               autoComplete="message"
               placeholder={t('channel.message')}
+              aria-label={t('message.new')}
               value={values.message}
               onChange={handleChange}
             />

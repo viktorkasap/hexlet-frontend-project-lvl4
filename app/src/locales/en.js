@@ -14,6 +14,7 @@ export const en = {
       created: 'Channel created',
       renamed: 'Channel renamed',
       removed: 'Channel removed',
+      manage: 'Manage channel',
     },
     login: {
       username: 'Username',
