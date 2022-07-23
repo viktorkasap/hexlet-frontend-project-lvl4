@@ -36,6 +36,7 @@ export const en = {
       alreadyExists: 'Username already taken',
       submit: 'Submit',
       header: 'Signup',
+      exist: 'Member existing',
     },
     notFound: {
       header: 'Page not found',

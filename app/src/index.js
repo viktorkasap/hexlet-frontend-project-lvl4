@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { Provider } from 'react-redux';
+import { Provider as StoreProvider } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import leoProfanity from 'leo-profanity';
@@ -12,14 +12,18 @@ import reportWebVitals from './reportWebVitals';
 
 import './assets/css/index.css';
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 const rollbarConfig = {
-  accessToken: process.env.ROLLBAR_ACCESS_TOKEN,
+  accessToken: process.env.ROLLBAR_TOKEN,
   payload: {
-    environment: 'production',
+    environment: isProduction,
   },
   captureUncaught: true,
   captureUnhandledRejections: true,
 };
+
+console.log('rollbarConfig', rollbarConfig);
 
 const clearRU = leoProfanity.getDictionary('ru');
 leoProfanity.add(clearRU);
@@ -27,13 +31,13 @@ leoProfanity.add(clearRU);
 const root = ReactDOM.createRoot(document.getElementById('chat'));
 
 root.render(
-  <Provider store={store}>
     <ProviderRollBar config={rollbarConfig}>
       <ErrorBoundary errorMessage="Error in React render">
-        <App />
+        <StoreProvider store={store}>
+          <App />
+        </StoreProvider>,
       </ErrorBoundary>
     </ProviderRollBar>
-  </Provider>,
 );
 
 // If you want to start measuring performance in your app, pass a function
