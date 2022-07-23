@@ -72,7 +72,6 @@ export const Add = ({ onHide }) => {
 
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
-          <FormLabel className="visually-hidden" htmlFor="name">{t('channel.name')}</FormLabel>
           <FormControl
             className="mb-2"
             type="text"
@@ -84,6 +83,7 @@ export const Add = ({ onHide }) => {
             onChange={handleChange}
             isInvalid={(touched.name && !!errors.name)}
           />
+          <FormLabel className="visually-hidden" htmlFor="name">{t('channel.name')}</FormLabel>
           <FormControl.Feedback type="invalid">{ errors.name }</FormControl.Feedback>
 
           <div className="d-flex justify-content-end">
