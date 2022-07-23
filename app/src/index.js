@@ -13,7 +13,7 @@ import reportWebVitals from './reportWebVitals';
 import './assets/css/index.css';
 
 const rollbarConfig = {
-  accessToken: '11f31657a1994b23a6143c685b5e4aed',//process.env.ROLLBAR_TOKEN,
+  accessToken: '561346b931f74f12900dd9715ab31b85',//process.env.ROLLBAR_TOKEN,
   payload: {
     environment: 'production',
   },
