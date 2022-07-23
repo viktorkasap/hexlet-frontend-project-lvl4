@@ -5,7 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { ArrowRightSquare } from 'react-bootstrap-icons';
 import leoProfanity from 'leo-profanity';
-
+import { useRollbar } from '@rollbar/react';
 
 import { sendMessage } from '../../../../../../api';
 
@@ -14,10 +14,13 @@ export const Footer = () => {
   const { t } = useTranslation();
   const { username } = JSON.parse(localStorage.getItem('userId'));
   const currentChannelId = useSelector(({ channels }) => channels.currentChannelId);
+  const rollbar = useRollbar();
 
   const formik = useFormik({
     initialValues: { message: '' },
     onSubmit: ({ message }, { resetForm }) => {
+  
+      rollbar.error("MESSAGAAAA!");
       
       if (message !== '') {
         const cleanedMessage = leoProfanity.clean(message);
