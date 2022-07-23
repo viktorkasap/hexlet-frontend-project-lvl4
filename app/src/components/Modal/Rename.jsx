@@ -9,10 +9,11 @@ import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { newNameChannel } from '../../api';
+import { useChatApi } from '../../hooks';
 import { selectors } from '../../store/channels';
 
 export const Rename = ({ onHide }) => {
+  const { newNameChannel } = useChatApi();
   const { t } = useTranslation();
   const inputRef = useRef();
   const isOpen = useSelector(({ modal }) => modal.isOpen);

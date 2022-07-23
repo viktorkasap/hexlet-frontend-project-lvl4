@@ -17,7 +17,7 @@ import {
 } from '../pages';
 import { Navigation } from '../components';
 
-import { AuthContextProvider } from '../context';
+import { AuthContextProvider, ChatApiProvider } from '../context';
 import { useAuth } from '../hooks';
 import { routes } from '../routes';
 
@@ -58,14 +58,20 @@ export const App = () => (
           <Navigation />
 
           <Routes>
-            <Route path={homePage()} element={(<PrivateRoute><Home /></PrivateRoute>)} />
+            <Route path={homePage()} element={(
+              <ChatApiProvider>
+                <PrivateRoute>
+                  <Home />
+                </PrivateRoute>
+              </ChatApiProvider>)}
+            />
             <Route path={loginPage()} element={<Login />} />
             <Route path={signupPage()} element={<Register />} />
             <Route path={notFoundPage()} element={<NotFound />} />
           </Routes>
         </div>
       </Router>
-
+      
       <ToastContainer />
     </AuthContextProvider>
   </LangProvider>

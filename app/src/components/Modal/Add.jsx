@@ -9,7 +9,7 @@ import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { newChannel } from '../../api';
+import { useChatApi } from '../../hooks';
 import { selectors } from '../../store/channels';
 
 export const Add = ({ onHide }) => {
@@ -19,6 +19,7 @@ export const Add = ({ onHide }) => {
   const [show, setShow] = useState(isOpen);
   const channelsNames = useSelector(selectors.selectAll).map(({ name }) => name);
   const notify = () => toast.success(t('channel.created'));
+  const { newChannel } = useChatApi();
 
   const handleClose = () => {
     setShow(!isOpen);

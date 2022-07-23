@@ -4,13 +4,14 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Modal, Button } from 'react-bootstrap';
 
-import { deleteChannel } from '../../api';
+import { useChatApi } from '../../hooks';
 
 export const Remove = ({ onHide }) => {
   const { t } = useTranslation();
   const [show, setShow] = useState(true);
   const channelId = useSelector(({ modal }) => modal.channelId);
   const notify = () => toast.success(t('channel.removed'));
+  const { deleteChannel } = useChatApi();
 
   const handleClose = () => {
     setShow(false);
