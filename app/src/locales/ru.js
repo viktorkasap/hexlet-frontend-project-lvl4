@@ -10,6 +10,7 @@ export const ru = {
     channel: {
       remove: 'Удалить',
       rename: 'Переименовать',
+      name: 'Имя канала',
       message: 'Введите сообщение',
       created: 'Канал создан',
       renamed: 'Канал переименован',

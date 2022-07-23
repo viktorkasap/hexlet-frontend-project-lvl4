@@ -1,5 +1,5 @@
 import {
-  Modal, Form, Button, FormControl,
+  Modal, Form, Button, FormControl, FormLabel,
 } from 'react-bootstrap';
 import React, { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
@@ -72,6 +72,7 @@ export const Add = ({ onHide }) => {
 
       <Modal.Body>
         <Form onSubmit={handleSubmit}>
+          <FormLabel className="visually-hidden" htmlFor="name">{t('channel.name')}</FormLabel>
           <FormControl
             className="mb-2"
             type="text"
