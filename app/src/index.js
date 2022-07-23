@@ -12,12 +12,10 @@ import reportWebVitals from './reportWebVitals';
 
 import './assets/css/index.css';
 
-const isProduction = process.env.NODE_ENV === 'production';
-
 const rollbarConfig = {
   accessToken: process.env.ROLLBAR_TOKEN,
   payload: {
-    environment: isProduction,
+    environment: 'production',
   },
   captureUncaught: true,
   captureUnhandledRejections: true,
