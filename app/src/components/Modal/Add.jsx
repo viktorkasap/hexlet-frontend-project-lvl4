@@ -77,6 +77,7 @@ export const Add = ({ onHide }) => {
             className="mb-2"
             type="text"
             name="name"
+            id="name"
             placeholder={t('modal.name')}
             ref={inputRef}
             value={values.name}

@@ -77,6 +77,7 @@ export const Rename = ({ onHide }) => {
             className="mb-2"
             type="text"
             name="name"
+            id="name"
             placeholder={t('modal.name')}
             ref={inputRef}
             autoComplete="current-password"
