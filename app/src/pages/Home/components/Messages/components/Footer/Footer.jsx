@@ -22,8 +22,8 @@ export const Footer = () => {
     initialValues: { message: '' },
     onSubmit: ({ message }, { resetForm }) => {
   
-      rollbar.error('Empty message!!!');
-      console.log('----!!!');
+      rollbar.error('Empty message22222');
+      console.log('----222222');
       
       if (message !== '') {
         const cleanedMessage = leoProfanity.clean(message);
