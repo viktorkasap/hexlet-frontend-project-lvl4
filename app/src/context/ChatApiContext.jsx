@@ -60,7 +60,7 @@ export const ChatApiProvider = ({ children }) => {
     socket.emit(NEW_MESSAGE, data);
   };
   
-  const value = {newChannel, deleteChannel, newNameChannel, sendMessage}
+  const value = { newChannel, deleteChannel, newNameChannel, sendMessage }
   
   return <ChatApiContext.Provider value={value}> { children }</ChatApiContext.Provider>
 };

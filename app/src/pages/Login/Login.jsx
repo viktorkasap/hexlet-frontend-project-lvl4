@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import {
-  Row, Col, Container, Card, Image, Anchor,
+  Row, Col, Container, Card, Image,
 } from 'react-bootstrap';
 
 import Form from './components/Form';
@@ -43,10 +43,10 @@ export const Login = () => {
             <Card.Footer className="p-4">
               <div className="text-center">
                 <span className="px-1">{ t('login.newToChat') }</span>
-                <Anchor href={signupPage()}>
+                <Link to={signupPage()}>
                   { t('login.signup') }
                   ›
-                </Anchor>
+                </Link>
               </div>
             </Card.Footer>
           </Card>

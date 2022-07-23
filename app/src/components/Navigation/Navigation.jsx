@@ -1,6 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { Container, Navbar, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import { useAuth } from '../../hooks';
 import { routes } from '../../routes';
@@ -26,7 +27,7 @@ export const Navigation = () => {
   return (
     <Navbar bg="white" expand="lg" className="shadow-sm">
       <Container>
-        <Navbar.Brand href={homePage()}>Hexlet Chat</Navbar.Brand>
+          <Link className="navbar-brand" to={homePage()}>Hexlet Chat</Link>
         <LogOut />
       </Container>
     </Navbar>
