@@ -92,11 +92,11 @@ export const FormLogin = ({
     <Form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={handleSubmit}>
       <h1 className="text-center mb-4">{ t('login.signup') }</h1>
 
-      <FloatingLabel label={t('login.username')} controlId="username" className="mb-3">
+      <FloatingLabel label={t('signup.username')} controlId="username" className="mb-3">
         <Form.Control
           name="username"
           autoComplete="username"
-          placeholder={t('login.username')}
+          placeholder={t('signup.username')}
           ref={inputRef}
           value={values.username}
           onChange={handleChange}
@@ -106,11 +106,11 @@ export const FormLogin = ({
         <FormControl.Feedback type="invalid" tooltip>{ errors.username }</FormControl.Feedback>
       </FloatingLabel>
 
-      <FloatingLabel label={t('login.password')} controlId="password" className="mb-3">
+      <FloatingLabel label={t('signup.password')} controlId="password" className="mb-3">
         <FormControl
           type="password"
           name="password"
-          placeholder={t('login.password')}
+          placeholder={t('signup.password')}
           autoComplete="new-password"
           value={values.password}
           onChange={handleChange}
