@@ -5,7 +5,7 @@
   "main": "app/src/index.js",
   "scripts": {
     "build": "npm run build --prefix app",
-    "start": "start-server -s app/build.dist",
+    "start": "start-server -s app/build",
     "postinstall": "cd app && npm install",
     "server": "start-server -a localhost"
   },
