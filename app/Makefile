@@ -2,7 +2,7 @@ start:
 	npm start
 
 install:
-	npm install
+	npm ci
 
 lint:
 	npm run lint

@@ -1,5 +1,6 @@
 install:
-	npm install
+	npm ci
+	make -C application install
 
 start-frontend:
 	make -C app start
