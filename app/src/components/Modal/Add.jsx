@@ -43,7 +43,7 @@ export const Add = ({ onHide }) => {
     initialValues: { name: '' },
     onSubmit: ({ name }) => {
       const cleanedName = leoProfanity.clean(name);
-
+      
       if (!channelsNames.includes(cleanedName)) {
         newChannel(leoProfanity.clean(name));
 

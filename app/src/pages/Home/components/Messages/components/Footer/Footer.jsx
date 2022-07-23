@@ -6,9 +6,13 @@ import { Form, InputGroup, Button } from 'react-bootstrap';
 import { ArrowRightSquare } from 'react-bootstrap-icons';
 import leoProfanity from 'leo-profanity';
 
+
 import { sendMessage } from '../../../../../../api';
+import { useRollbar } from '@rollbar/react';
 
 export const Footer = () => {
+  const rollbar = useRollbar();
+  
   const ICON_SIZE = 20;
   const { t } = useTranslation();
   const { username } = JSON.parse(localStorage.getItem('userId'));
@@ -17,6 +21,9 @@ export const Footer = () => {
   const formik = useFormik({
     initialValues: { message: '' },
     onSubmit: ({ message }, { resetForm }) => {
+  
+      rollbar.error('Empty message');
+      
       if (message !== '') {
         const cleanedMessage = leoProfanity.clean(message);
         const data = { body: cleanedMessage, channelId: currentChannelId, username };

@@ -27,7 +27,7 @@ const handleSubmitForm = async (props) => {
       console.log(`ERROR 401: ${err.message}`);
       console.log('authFailed:', authFailed);
 
-      rollbar.err(err);
+      rollbar.error(err);
       inputRef.current.select();
       setAuthFailed(true);
       return false;
