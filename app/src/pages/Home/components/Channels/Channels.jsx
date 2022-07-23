@@ -24,6 +24,7 @@ export const Channels = ({ handleOpen }) => {
           onClick={handleAdd()}
         >
           <PlusSquare />
+          <span className="visually-hidden">+</span>
         </Button>
       </div>
 
