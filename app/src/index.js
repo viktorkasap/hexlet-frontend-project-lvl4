@@ -14,9 +14,7 @@ import './assets/css/index.css';
 
 const rollbarConfig = {
   accessToken: process.env.ROLLBAR_TOKEN,
-  payload: {
-    environment: 'production',
-  },
+  environment: 'production',
   captureUncaught: true,
   captureUnhandledRejections: true,
 };
