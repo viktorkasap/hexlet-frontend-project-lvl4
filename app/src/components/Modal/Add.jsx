@@ -13,7 +13,6 @@ import useChatApi from '../../hooks/useChatApi';
 import { selectors } from '../../store/channels';
 
 const Add = ({ onHide }) => {
-
   const { t } = useTranslation();
   const inputRef = useRef();
   const isOpen = useSelector(({ modal }) => modal.isOpen);
@@ -23,17 +22,13 @@ const Add = ({ onHide }) => {
   const { newChannel } = useChatApi();
 
   const handleClose = () => {
-
     setShow(!isOpen);
     onHide();
-
-};
+  };
 
   useEffect(() => {
-
     inputRef.current.focus();
-
-}, []);
+  }, []);
 
   const validationSchema = Yup.object().shape({
     name: Yup
@@ -48,23 +43,17 @@ const Add = ({ onHide }) => {
     validationSchema,
     initialValues: { name: '' },
     onSubmit: ({ name }) => {
-
       const cleanedName = leoProfanity.clean(name);
-
+      
       if (!channelsNames.includes(cleanedName)) {
-
         newChannel(leoProfanity.clean(name));
 
         if (!formik.errors.name) {
-
           handleClose();
           notify();
-
-}
-
-}
-
-},
+        }
+      }
+    },
   });
 
   const {
@@ -72,21 +61,18 @@ const Add = ({ onHide }) => {
   } = formik;
 
   return (
-      <Modal
-show={show}
-onHide={handleClose}
-centered>
-          <Modal.Header closeButton>
-              <Modal.Title>
-                  {' '}
-                  { t('modal.add') }
-                  {' '}
-              </Modal.Title>
-          </Modal.Header>
+    <Modal show={show} onHide={handleClose} centered>
+      <Modal.Header closeButton>
+        <Modal.Title>
+          {' '}
+          { t('modal.add') }
+          {' '}
+        </Modal.Title>
+      </Modal.Header>
 
-          <Modal.Body>
-              <Form onSubmit={handleSubmit}>
-                  <FormControl
+      <Modal.Body>
+        <Form onSubmit={handleSubmit}>
+          <FormControl
             className="mb-2"
             type="text"
             name="name"
@@ -97,35 +83,29 @@ centered>
             onChange={handleChange}
             isInvalid={(touched.name && !!errors.name)}
           />
-                  <FormLabel
-className="visually-hidden"
-htmlFor="name">
-                      {t('channel.name')}
-                  </FormLabel>
-                  <FormControl.Feedback type="invalid">
-                      { errors.name }
-                  </FormControl.Feedback>
+          <FormLabel className="visually-hidden" htmlFor="name">{t('channel.name')}</FormLabel>
+          <FormControl.Feedback type="invalid">{ errors.name }</FormControl.Feedback>
 
-                  <div className="d-flex justify-content-end">
-                      <Button
+          <div className="d-flex justify-content-end">
+            <Button
               variant="secondary"
               className="me-2"
               onClick={handleClose}
             >
-                          { t('modal.cancel') }
-                      </Button>
-                      <Button
+              { t('modal.cancel') }
+            </Button>
+
+            <Button
               type="submit"
               variant="primary"
             >
-                          { t('modal.add') }
-                      </Button>
-                  </div>
-              </Form>
-          </Modal.Body>
-      </Modal>
+              { t('modal.add') }
+            </Button>
+          </div>
+        </Form>
+      </Modal.Body>
+    </Modal>
   );
-
 };
 
 export default Add;

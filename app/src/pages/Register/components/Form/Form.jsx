@@ -12,23 +12,19 @@ import { useTranslation } from 'react-i18next';
 import { useRollbar } from '@rollbar/react';
 
 const handleSubmitForm = async (props) => {
-
   const {
     auth, signupPath, authFailed, setAuthFailed, values, navigate, inputRef, redirectPath, rollbar,
   } = props;
 
   try {
-
     const authResponse = await axios.post(signupPath(), values);
 
     localStorage.setItem('userId', JSON.stringify(authResponse.data));
     auth.logIn();
     navigate(redirectPath);
-
-} catch (err) {
-
+  } catch (err) {
+    
     if (err.isAxiosError && err.response.status === 401) {
-
       console.log(`ERROR 401: ${err.message}`);
       console.log('authFailed:', authFailed);
 
@@ -37,31 +33,23 @@ const handleSubmitForm = async (props) => {
       inputRef.current.select();
       setAuthFailed(true);
       return false;
-
-}
+    }
 
     throw err;
-
-}
-
-  return true;
-
+  }
 };
 
 const FormLogin = ({
   auth, signupPath, navigate, redirectPath,
 }) => {
-
   const [authFailed, setAuthFailed] = useState(false);
   const { t } = useTranslation();
   const inputRef = useRef();
   const rollbar = useRollbar();
 
   useEffect(() => {
-
     inputRef.current.focus();
-
-}, []);
+  }, []);
 
   const validationSchema = Yup.object().shape({
     username: Yup
@@ -101,18 +89,11 @@ const FormLogin = ({
   } = formik;
 
   return (
-      <Form
-className="col-12 col-md-6 mt-3 mt-mb-0"
-onSubmit={handleSubmit}>
-          <h1 className="text-center mb-4">
-              { t('login.signup') }
-          </h1>
+    <Form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={handleSubmit}>
+      <h1 className="text-center mb-4">{ t('login.signup') }</h1>
 
-          <FloatingLabel
-label={t('signup.username')}
-controlId="username"
-className="mb-3">
-              <Form.Control
+      <FloatingLabel label={t('signup.username')} controlId="username" className="mb-3">
+        <Form.Control
           name="username"
           autoComplete="username"
           placeholder={t('signup.username')}
@@ -122,18 +103,11 @@ className="mb-3">
           isInvalid={(touched.username && !!errors.username) || authFailed}
         />
 
-              <FormControl.Feedback
-type="invalid"
-tooltip>
-                  { errors.username }
-              </FormControl.Feedback>
-          </FloatingLabel>
+        <FormControl.Feedback type="invalid" tooltip>{ errors.username }</FormControl.Feedback>
+      </FloatingLabel>
 
-          <FloatingLabel
-label={t('signup.password')}
-controlId="password"
-className="mb-3">
-              <FormControl
+      <FloatingLabel label={t('signup.password')} controlId="password" className="mb-3">
+        <FormControl
           type="password"
           name="password"
           placeholder={t('signup.password')}
@@ -143,18 +117,11 @@ className="mb-3">
           isInvalid={(touched.password && !!errors.password) || authFailed}
         />
 
-              <FormControl.Feedback
-type="invalid"
-tooltip>
-                  { errors.password }
-              </FormControl.Feedback>
-          </FloatingLabel>
+        <FormControl.Feedback type="invalid" tooltip>{ errors.password }</FormControl.Feedback>
+      </FloatingLabel>
 
-          <FloatingLabel
-label={t('signup.confirm')}
-controlId="password-confirm"
-className="mb-4">
-              <FormControl
+      <FloatingLabel label={t('signup.confirm')} controlId="password-confirm" className="mb-4">
+        <FormControl
           type="password"
           name="passwordConfirm"
           placeholder={t('signup.confirm')}
@@ -164,24 +131,18 @@ className="mb-4">
           isInvalid={(touched.passwordConfirm && !!errors.passwordConfirm) || authFailed}
         />
 
-              <FormControl.Feedback
-type="invalid"
-tooltip>
-                  { errors.passwordConfirm }
-              </FormControl.Feedback>
-          </FloatingLabel>
+        <FormControl.Feedback type="invalid" tooltip>{ errors.passwordConfirm }</FormControl.Feedback>
+      </FloatingLabel>
 
-          <Button
+      <Button
         type="submit"
         variant="outline-primary"
         className="w-100 mb-3"
       >
-              { t('login.submit') }
-
-          </Button>
-      </Form>
+        { t('login.submit') }
+      </Button>
+    </Form>
   );
-
 };
 
 export default FormLogin;

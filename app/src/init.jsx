@@ -18,33 +18,31 @@ const rollbarConfig = {
 };
 
 const init = async () => {
-
   const clearRU = leoProfanity.getDictionary('ru');
   leoProfanity.add(clearRU);
-
+  
   const i18n = i18next.createInstance();
-
+  
   await i18n
     .use(initReactI18next)
     .init({
       resources: { en, ru },
       fallbackLng: 'ru',
     });
-
+  
   const vdom = (
-      <ProviderRollBar config={rollbarConfig}>
-          <ErrorBoundary errorMessage="Error in React render">
-              <StoreProvider store={store}>
-                  <I18nextProvider i18n={i18n}>
-                      <App />
-                  </I18nextProvider>
-              </StoreProvider>
-          </ErrorBoundary>
-      </ProviderRollBar>
+    <ProviderRollBar config={rollbarConfig}>
+      <ErrorBoundary errorMessage="Error in React render">
+        <StoreProvider store={store}>
+          <I18nextProvider i18n={i18n}>
+            <App />
+          </I18nextProvider>
+        </StoreProvider>
+      </ErrorBoundary>
+    </ProviderRollBar>
   );
-
+  
   return vdom;
-
 };
 
 export default init;
