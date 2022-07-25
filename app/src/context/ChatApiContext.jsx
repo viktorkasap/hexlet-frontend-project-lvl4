@@ -71,4 +71,5 @@ export const ChatApiProvider = ({ children }) => {
     <ChatApiContext.Provider value={value}>
       { children }
     </ChatApiContext.Provider>
-  )};
+  );
+};

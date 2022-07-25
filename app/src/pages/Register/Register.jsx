@@ -20,7 +20,7 @@ const Register = () => {
     if (auth.loggedIn) {
       navigate(homePage());
     }
-  }, []);
+  });
 
   return (
     <Container fluid className="h-100">
