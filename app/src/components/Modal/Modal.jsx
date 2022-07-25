@@ -16,6 +16,7 @@ const ModalComponent = (props) => {
   const Component = modal[type];
 
   return (
+    // eslint-disable-next-line react/jsx-props-no-spreading
     <Component {...props} />
   );
 };
@@ -25,6 +26,7 @@ const Modal = (props) => {
 
   return (
     <>
+      {/* eslint-disable-next-line react/jsx-props-no-spreading */}
       { type && <ModalComponent type={type} {...props} /> }
     </>
   );

@@ -8,8 +8,6 @@ import {
 
 import { ToastContainer } from 'react-toastify';
 
-import './styles.css';
-
 import Home from '../pages/Home/Home';
 import Login from '../pages/Login/Login';
 import Register from '../pages/Register/Register';
@@ -33,28 +31,40 @@ const PrivateRoute = ({ children }) => {
 };
 
 const App = () => (
-    <AuthContextProvider>
-      <Router>
-        <div className="d-flex flex-column h-100">
-          <Navigation />
+  <AuthContextProvider>
+    <Router>
+      <div className="d-flex flex-column h-100">
+        <Navigation />
 
-          <Routes>
-            <Route path={homePage()} element={(
+        <Routes>
+          <Route
+            path={homePage()}
+            element={(
               <ChatApiProvider>
                 <PrivateRoute>
                   <Home />
                 </PrivateRoute>
-              </ChatApiProvider>)}
-            />
-            <Route path={loginPage()} element={<Login />} />
-            <Route path={signupPage()} element={<Register />} />
-            <Route path={notFoundPage()} element={<NotFound />} />
-          </Routes>
-        </div>
-      </Router>
+              </ChatApiProvider>
+            )}
+          />
+          <Route
+            path={loginPage()}
+            element={<Login />}
+          />
+          <Route
+            path={signupPage()}
+            element={<Register />}
+          />
+          <Route
+            path={notFoundPage()}
+            element={<NotFound />}
+          />
+        </Routes>
+      </div>
+    </Router>
 
-      <ToastContainer />
-    </AuthContextProvider>
+    <ToastContainer />
+  </AuthContextProvider>
 );
 
 export { App as default };

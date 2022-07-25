@@ -40,7 +40,7 @@ const ButtonChannel = ({
   onclick, variant, name, id,
 }) => (
   <Button variant={variant} className="text-start w-100 text-truncate" onClick={onclick(id)}>
-    <span className="me-1">#</span>
+    #
     {' '}
     {name}
   </Button>
