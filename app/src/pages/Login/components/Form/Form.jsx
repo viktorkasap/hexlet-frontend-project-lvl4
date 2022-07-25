@@ -35,6 +35,8 @@ const handleSubmitForm = async (props) => {
 
     throw err;
   }
+
+  return true;
 };
 
 const FormLogin = ({

@@ -27,7 +27,7 @@ const Navigation = () => {
   return (
     <Navbar bg="white" expand="lg" className="shadow-sm">
       <Container>
-          <Link className="navbar-brand" to={homePage()}>Hexlet Chat</Link>
+        <Link className="navbar-brand" to={homePage()}>Hexlet Chat</Link>
         <LogOut />
       </Container>
     </Navbar>

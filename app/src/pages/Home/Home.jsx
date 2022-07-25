@@ -35,7 +35,7 @@ const Home = () => {
         dispatch(addChannels(channels));
         dispatch(setCurrentChannelId(currentChannelId));
       });
-  }, []);
+  });
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
