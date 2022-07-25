@@ -22,7 +22,7 @@ const Login = () => {
     if (auth.loggedIn) {
       navigate(homePage());
     }
-  }, []);
+  }, [auth]);
 
   return (
     <Container fluid className="h-100">

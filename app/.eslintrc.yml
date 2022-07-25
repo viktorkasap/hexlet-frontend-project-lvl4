@@ -26,4 +26,5 @@ rules: {
   react/jsx-props-no-spreading: 0,
   react-hooks/exhaustive-deps: 0,
   no-trailing-spaces: 1,
+  object-curly-newline: 1
 }

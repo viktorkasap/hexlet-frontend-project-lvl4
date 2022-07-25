@@ -9,7 +9,6 @@ import Header from './components/Header/Header';
 import Body from './components/Body/Body';
 import Footer from './components/Footer/Footer';
 
-
 const Messages = () => {
   const currentChannelId = useSelector(({ channels }) => channels.currentChannelId);
   const currentChannel = useSelector(

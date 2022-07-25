@@ -10,4 +10,4 @@ const routes = {
   signupPage: () => '/signup',
 };
 
-export default routes
+export default routes;
