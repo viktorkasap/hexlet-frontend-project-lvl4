@@ -6,9 +6,9 @@
   "scripts": {
     "build": "npm run build --prefix app",
     "start": "start-server -s app/build",
-    "server": "start-server -a localhost",
-    "postinstall": "cd app && npm install"
+    "server": "start-server -a localhost"
   },
+  "postinstall": "cd app && npm install",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/kasapvictor/frontend-project-lvl4.git"
