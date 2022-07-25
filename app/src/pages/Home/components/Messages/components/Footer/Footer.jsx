@@ -18,7 +18,7 @@ const Footer = () => {
   const formik = useFormik({
     initialValues: { message: '' },
     onSubmit: ({ message }, { resetForm }) => {
-      
+
       if (message !== '') {
         const cleanedMessage = leoProfanity.clean(message);
         const data = { body: cleanedMessage, channelId: currentChannelId, username };

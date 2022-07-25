@@ -20,16 +20,16 @@ const rollbarConfig = {
 const init = async () => {
   const clearRU = leoProfanity.getDictionary('ru');
   leoProfanity.add(clearRU);
-  
+
   const i18n = i18next.createInstance();
-  
+
   await i18n
     .use(initReactI18next)
     .init({
       resources: { en, ru },
       fallbackLng: 'ru',
     });
-  
+
   const vdom = (
     <ProviderRollBar config={rollbarConfig}>
       <ErrorBoundary errorMessage="Error in React render">
@@ -41,7 +41,7 @@ const init = async () => {
       </ErrorBoundary>
     </ProviderRollBar>
   );
-  
+
   return vdom;
 };
 

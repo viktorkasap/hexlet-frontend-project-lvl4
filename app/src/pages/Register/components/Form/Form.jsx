@@ -23,7 +23,7 @@ const handleSubmitForm = async (props) => {
     auth.logIn();
     navigate(redirectPath);
   } catch (err) {
-    
+
     if (err.isAxiosError && err.response.status === 401) {
       console.log(`ERROR 401: ${err.message}`);
       console.log('authFailed:', authFailed);
