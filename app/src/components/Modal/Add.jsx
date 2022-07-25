@@ -57,7 +57,7 @@ const Add = ({ onHide }) => {
   });
 
   const {
-    touched, errors, values, handleSubmit, handleChange,
+    touched, errors, values, handleSubmit, handleChange, isSubmitting
   } = formik;
 
   return (
@@ -81,6 +81,7 @@ const Add = ({ onHide }) => {
             ref={inputRef}
             value={values.name}
             onChange={handleChange}
+            disabled={isSubmitting}
             isInvalid={(touched.name && !!errors.name)}
           />
           <FormLabel className="visually-hidden" htmlFor="name">{t('channel.name')}</FormLabel>

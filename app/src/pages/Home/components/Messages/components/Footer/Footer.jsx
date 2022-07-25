@@ -27,7 +27,7 @@ const Footer = () => {
     },
   });
 
-  const { values, handleSubmit, handleChange } = formik;
+  const { values, handleSubmit, handleChange, isSubmitting } = formik;
 
   return (
     <div className="mt-auto px-5 py-3">
@@ -41,6 +41,7 @@ const Footer = () => {
               placeholder={t('channel.message')}
               aria-label={t('message.new')}
               value={values.message}
+              disabled={isSubmitting}
               onChange={handleChange}
             />
 

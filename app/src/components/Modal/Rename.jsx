@@ -61,7 +61,7 @@ const Rename = ({ onHide }) => {
   });
 
   const {
-    touched, errors, values, handleSubmit, handleChange,
+    touched, errors, values, handleSubmit, handleChange, isSubmitting
   } = formik;
 
   return (
@@ -82,6 +82,7 @@ const Rename = ({ onHide }) => {
             ref={inputRef}
             autoComplete="current-password"
             value={values.name}
+            disabled={isSubmitting}
             onChange={handleChange}
             isInvalid={(touched.name && !!errors.name)}
           />
