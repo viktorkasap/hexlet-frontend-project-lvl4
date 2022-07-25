@@ -57,7 +57,7 @@ const Add = ({ onHide }) => {
   });
 
   const {
-    touched, errors, values, handleSubmit, handleChange, isSubmitting
+    touched, errors, values, handleSubmit, handleChange, isSubmitting,
   } = formik;
 
   return (

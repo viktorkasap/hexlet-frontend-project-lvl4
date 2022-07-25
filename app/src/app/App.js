@@ -62,7 +62,6 @@ const App = () => (
         </Routes>
       </div>
     </Router>
-
     <ToastContainer />
   </AuthContextProvider>
 );

@@ -27,7 +27,12 @@ const Footer = () => {
     },
   });
 
-  const { values, handleSubmit, handleChange, isSubmitting } = formik;
+  const {
+    values,
+    handleSubmit,
+    handleChange,
+    isSubmitting,
+  } = formik;
 
   return (
     <div className="mt-auto px-5 py-3">
