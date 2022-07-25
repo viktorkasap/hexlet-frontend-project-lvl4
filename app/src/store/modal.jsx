@@ -11,16 +11,22 @@ const modal = createSlice({
   initialState,
   reducers: {
     open: (state, { payload }) => {
+
       state.isOpen = true;
       state.type = payload;
-    },
+
+},
     close: (state) => {
+
       state.isOpen = false;
       state.type = null;
-    },
+
+},
     setChannelId: (state, { payload }) => {
+
       state.channelId = payload;
-    },
+
+},
   },
 });
 

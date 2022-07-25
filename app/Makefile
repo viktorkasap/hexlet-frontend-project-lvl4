@@ -5,7 +5,7 @@ install:
 	npm install
 
 lint:
-	npm run lint --fix
+	npm run lint
 
 build:
 	CI=false npm run build

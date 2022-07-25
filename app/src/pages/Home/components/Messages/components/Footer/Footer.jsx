@@ -9,6 +9,7 @@ import leoProfanity from 'leo-profanity';
 import useChatApi from '../../../../../../hooks/useChatApi';
 
 const Footer = () => {
+
   const ICON_SIZE = 20;
   const { sendMessage } = useChatApi();
   const { t } = useTranslation();
@@ -18,24 +19,29 @@ const Footer = () => {
   const formik = useFormik({
     initialValues: { message: '' },
     onSubmit: ({ message }, { resetForm }) => {
-      
+
       if (message !== '') {
+
         const cleanedMessage = leoProfanity.clean(message);
         const data = { body: cleanedMessage, channelId: currentChannelId, username };
         sendMessage(data);
         resetForm();
-      }
-    },
+
+}
+
+},
   });
 
   const { values, handleSubmit, handleChange } = formik;
 
   return (
-    <div className="mt-auto px-5 py-3">
-      <div>
-        <Form className="py-1 border rounded-2" onSubmit={handleSubmit}>
-          <InputGroup>
-            <Form.Control
+      <div className="mt-auto px-5 py-3">
+          <div>
+              <Form
+className="py-1 border rounded-2"
+onSubmit={handleSubmit}>
+                  <InputGroup>
+                      <Form.Control
               className="border-0 p-0 ps-2"
               name="message"
               autoComplete="message"
@@ -45,19 +51,20 @@ const Footer = () => {
               onChange={handleChange}
             />
 
-            <Button
+                      <Button
               type="submit"
               variant="link"
               className="btn-group-vertical text-dark"
               disabled={!values.message.length > 0}
             >
-              <ArrowRightSquare size={ICON_SIZE} />
-            </Button>
-          </InputGroup>
-        </Form>
+                          <ArrowRightSquare size={ICON_SIZE} />
+                      </Button>
+                  </InputGroup>
+              </Form>
+          </div>
       </div>
-    </div>
   );
+
 };
 
 export default Footer;

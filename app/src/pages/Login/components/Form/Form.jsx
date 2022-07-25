@@ -12,18 +12,24 @@ import { useTranslation } from 'react-i18next';
 import { useRollbar } from '@rollbar/react';
 
 const handleSubmitForm = async (props) => {
+
   const {
     auth, loginPath, authFailed, setAuthFailed, values, navigate, inputRef, redirectPath, rollbar,
   } = props;
 
   try {
+
     const authResponse = await axios.post(loginPath, values);
 
     localStorage.setItem('userId', JSON.stringify(authResponse.data));
     auth.logIn();
     navigate(redirectPath);
-  } catch (err) {
+    return true;
+
+} catch (err) {
+
     if (err.isAxiosError && err.response.status === 401) {
+
       console.log(`ERROR 401: ${err.message}`);
       console.log('authFailed:', authFailed);
 
@@ -31,15 +37,20 @@ const handleSubmitForm = async (props) => {
       inputRef.current.select();
       setAuthFailed(true);
       return false;
-    }
+
+}
 
     throw err;
-  }
+
+}
+
+
 };
 
 const FormLogin = ({
   auth, loginPath, navigate, redirectPath,
 }) => {
+
   const { t } = useTranslation();
   const [authFailed, setAuthFailed] = useState(false);
   const authMessage = t('login.authFailed');
@@ -47,8 +58,10 @@ const FormLogin = ({
 
   const inputRef = useRef();
   useEffect(() => {
+
     inputRef.current.focus();
-  }, []);
+
+}, []);
 
   const validationSchema = Yup.object().shape({
     username: Yup
@@ -82,11 +95,17 @@ const FormLogin = ({
   } = formik;
 
   return (
-    <Form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={handleSubmit}>
-      <h1 className="text-center mb-4">{ t('login.submit') }</h1>
-
-      <FloatingLabel label={t('login.username')} controlId="username" className="mb-3">
-        <Form.Control
+      <Form
+className="col-12 col-md-6 mt-3 mt-mb-0"
+onSubmit={handleSubmit}>
+          <h1 className="text-center mb-4">
+              { t('login.submit') }
+          </h1>
+          <FloatingLabel
+label={t('login.username')}
+controlId="username"
+className="mb-3">
+              <Form.Control
           name="username"
           autoComplete="username"
           placeholder={t('login.username')}
@@ -95,10 +114,13 @@ const FormLogin = ({
           onChange={handleChange}
           isInvalid={(touched.username && !!errors.username) || authFailed}
         />
-      </FloatingLabel>
+          </FloatingLabel>
 
-      <FloatingLabel label={t('login.password')} controlId="password" className="mb-4">
-        <FormControl
+          <FloatingLabel
+label={t('login.password')}
+controlId="password"
+className="mb-4">
+              <FormControl
           type="password"
           name="password"
           placeholder={t('login.password')}
@@ -108,18 +130,23 @@ const FormLogin = ({
           isInvalid={(touched.password && !!errors.password) || authFailed}
         />
 
-        <FormControl.Feedback type="invalid" tooltip>{ errors.password ?? authMessage }</FormControl.Feedback>
-      </FloatingLabel>
+              <FormControl.Feedback
+type="invalid"
+tooltip>
+                  { errors.password ?? authMessage }
+              </FormControl.Feedback>
+          </FloatingLabel>
 
-      <Button
+          <Button
         type="submit"
         variant="outline-primary"
         className="w-100 mb-3"
       >
-        { t('login.submit') }
-      </Button>
-    </Form>
+              { t('login.submit') }
+          </Button>
+      </Form>
   );
+
 };
 
 export default FormLogin;

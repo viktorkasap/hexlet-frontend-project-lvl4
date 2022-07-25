@@ -13,6 +13,7 @@ import useChatApi from '../../hooks/useChatApi';
 import { selectors } from '../../store/channels';
 
 const Rename = ({ onHide }) => {
+
   const { newNameChannel } = useChatApi();
   const { t } = useTranslation();
   const inputRef = useRef();
@@ -26,13 +27,17 @@ const Rename = ({ onHide }) => {
   const notify = () => toast.success(t('channel.renamed'));
 
   const handleClose = () => {
+
     setShow(!isOpen);
     onHide();
-  };
+
+};
 
   useEffect(() => {
+
     inputRef.current.select();
-  }, []);
+
+}, []);
 
   const validationSchema = Yup.object().shape({
     name: Yup
@@ -47,17 +52,23 @@ const Rename = ({ onHide }) => {
     validationSchema,
     initialValues: { name },
     onSubmit: ({ name: newName }) => {
+
       const cleanedName = leoProfanity.clean(newName);
 
       if (!channelsNames.includes(cleanedName)) {
+
         newNameChannel({ id, name: cleanedName });
 
         if (!formik.errors.name) {
+
           handleClose();
           notify();
-        }
-      }
-    },
+
+}
+
+}
+
+},
   });
 
   const {
@@ -65,15 +76,24 @@ const Rename = ({ onHide }) => {
   } = formik;
 
   return (
-    <Modal show={show} onHide={handleClose} centered>
-      <Modal.Header closeButton>
-        <Modal.Title>{ t('modal.rename') }</Modal.Title>
-      </Modal.Header>
+      <Modal
+show={show}
+onHide={handleClose}
+centered>
+          <Modal.Header closeButton>
+              <Modal.Title>
+                  { t('modal.rename') }
+              </Modal.Title>
+          </Modal.Header>
 
-      <Modal.Body>
-        <Form onSubmit={handleSubmit}>
-          <FormLabel className="visually-hidden" htmlFor="name">{t('channel.name')}</FormLabel>
-          <FormControl
+          <Modal.Body>
+              <Form onSubmit={handleSubmit}>
+                  <FormLabel
+className="visually-hidden"
+htmlFor="name">
+                      {t('channel.name')}
+                  </FormLabel>
+                  <FormControl
             className="mb-2"
             type="text"
             name="name"
@@ -85,28 +105,31 @@ const Rename = ({ onHide }) => {
             onChange={handleChange}
             isInvalid={(touched.name && !!errors.name)}
           />
-          <FormControl.Feedback type="invalid">{ errors.name }</FormControl.Feedback>
+                  <FormControl.Feedback type="invalid">
+                      { errors.name }
+                  </FormControl.Feedback>
 
-          <div className="d-flex justify-content-end">
-            <Button
+                  <div className="d-flex justify-content-end">
+                      <Button
               variant="secondary"
               className="me-2"
               onClick={handleClose}
             >
-              { t('modal.cancel') }
-            </Button>
+                          { t('modal.cancel') }
+                      </Button>
 
-            <Button
+                      <Button
               type="submit"
               variant="primary"
             >
-              { t('modal.rename') }
-            </Button>
-          </div>
-        </Form>
-      </Modal.Body>
-    </Modal>
+                          { t('modal.rename') }
+                      </Button>
+                  </div>
+              </Form>
+          </Modal.Body>
+      </Modal>
   );
+
 };
 
 export default Rename;

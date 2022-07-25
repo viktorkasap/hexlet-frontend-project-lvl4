@@ -11,6 +11,7 @@ import Footer from './components/Footer/Footer';
 
 
 const Messages = () => {
+
   const currentChannelId = useSelector(({ channels }) => channels.currentChannelId);
   const currentChannel = useSelector(
     (state) => channelsSelectors.selectById(state, currentChannelId),
@@ -19,14 +20,17 @@ const Messages = () => {
   const messages = allMessages.filter(({ channelId }) => channelId === currentChannelId);
 
   return (
-    <div className="col p-0 h-100">
-      <div className="d-flex flex-column h-100">
-        <Header channelName={currentChannel?.name} count={messages.length} />
-        <Body messages={messages} />
-        <Footer />
+      <div className="col p-0 h-100">
+          <div className="d-flex flex-column h-100">
+              <Header
+channelName={currentChannel?.name}
+count={messages.length} />
+              <Body messages={messages} />
+              <Footer />
+          </div>
       </div>
-    </div>
   );
+
 };
 
 export default Messages;
