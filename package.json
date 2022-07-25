@@ -7,7 +7,6 @@
     "build": "npm run build --prefix app",
     "start": "start-server -s app/build",
     "server": "start-server -a localhost",
-    "postinstall": "cd app && npm install"
   },
   "postinstall": "cd app && npm install",
   "repository": {
