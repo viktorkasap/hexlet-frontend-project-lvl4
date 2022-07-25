@@ -16,6 +16,7 @@ const ButtonChannelRemovable = ({
     <Dropdown as={ButtonGroup} className="w-100">
       <Button variant={variant} className="text-start w-100 text-truncate" onClick={onclick(id)}>
         #
+        {' '}
         {name}
       </Button>
 
