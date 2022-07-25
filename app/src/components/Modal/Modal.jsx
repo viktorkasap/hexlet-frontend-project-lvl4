@@ -1,9 +1,9 @@
 import React, { Fragment } from 'react';
 import { useSelector } from 'react-redux';
 
-import { Add } from './Add';
-import { Rename } from './Rename';
-import { Remove } from './Remove';
+import Add from './Add';
+import Rename from './Rename';
+import Remove from './Remove';
 
 const ModalComponent = (props) => {
   const { type } = props;
@@ -20,7 +20,7 @@ const ModalComponent = (props) => {
   );
 };
 
-export const Modal = (props) => {
+const Modal = (props) => {
   const type = useSelector(({ modal }) => modal.type);
 
   return (
@@ -29,3 +29,5 @@ export const Modal = (props) => {
     </>
   );
 };
+
+export default Modal;

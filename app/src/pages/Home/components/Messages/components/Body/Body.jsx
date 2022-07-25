@@ -21,8 +21,10 @@ const MessagesList = ({ messages }) => {
   );
 };
 
-export const Body = (({ messages }) => (
+const Body = (({ messages }) => (
   <div id="messages-box" className="chat-messages overflow-auto px-5">
     <MessagesList messages={messages} />
   </div>
 ));
+
+export default Body;

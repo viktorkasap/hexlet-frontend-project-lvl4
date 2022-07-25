@@ -1,4 +1,4 @@
-export const ru = {
+const ru = {
   translation: {
     home: {
       channels: 'Каналы',
@@ -63,3 +63,5 @@ export const ru = {
     }
   },
 };
+
+export default ru;

@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { Modal, Button } from 'react-bootstrap';
 
-import { useChatApi } from '../../hooks';
+import useChatApi from '../../hooks/useChatApi';
 
-export const Remove = ({ onHide }) => {
+const Remove = ({ onHide }) => {
   const { t } = useTranslation();
   const [show, setShow] = useState(true);
   const channelId = useSelector(({ modal }) => modal.channelId);
@@ -56,3 +56,5 @@ export const Remove = ({ onHide }) => {
     </Modal>
   );
 };
+
+export default Remove;

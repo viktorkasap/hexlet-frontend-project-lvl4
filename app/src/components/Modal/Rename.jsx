@@ -9,10 +9,10 @@ import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { useChatApi } from '../../hooks';
+import useChatApi from '../../hooks/useChatApi';
 import { selectors } from '../../store/channels';
 
-export const Rename = ({ onHide }) => {
+const Rename = ({ onHide }) => {
   const { newNameChannel } = useChatApi();
   const { t } = useTranslation();
   const inputRef = useRef();
@@ -108,3 +108,5 @@ export const Rename = ({ onHide }) => {
     </Modal>
   );
 };
+
+export default Rename;

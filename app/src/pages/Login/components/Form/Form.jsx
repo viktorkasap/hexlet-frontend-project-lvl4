@@ -37,7 +37,7 @@ const handleSubmitForm = async (props) => {
   }
 };
 
-export const FormLogin = ({
+const FormLogin = ({
   auth, loginPath, navigate, redirectPath,
 }) => {
   const { t } = useTranslation();
@@ -121,3 +121,5 @@ export const FormLogin = ({
     </Form>
   );
 };
+
+export default FormLogin;

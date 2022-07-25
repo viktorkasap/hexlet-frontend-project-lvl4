@@ -39,7 +39,7 @@ const handleSubmitForm = async (props) => {
   }
 };
 
-export const FormLogin = ({
+const FormLogin = ({
   auth, signupPath, navigate, redirectPath,
 }) => {
   const [authFailed, setAuthFailed] = useState(false);
@@ -144,3 +144,5 @@ export const FormLogin = ({
     </Form>
   );
 };
+
+export default FormLogin;

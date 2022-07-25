@@ -1,1 +1,0 @@
-export { fetchAll } from './fetchAll';

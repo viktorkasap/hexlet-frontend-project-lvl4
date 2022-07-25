@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export const Header = ({ channelName, count }) => {
+const Header = ({ channelName, count }) => {
   const { t } = useTranslation();
 
   return (
@@ -16,3 +16,5 @@ export const Header = ({ channelName, count }) => {
     </div>
   );
 };
+
+export default Header;

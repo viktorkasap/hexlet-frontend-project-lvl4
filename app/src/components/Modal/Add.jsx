@@ -9,10 +9,10 @@ import { toast } from 'react-toastify';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
-import { useChatApi } from '../../hooks';
+import useChatApi from '../../hooks/useChatApi';
 import { selectors } from '../../store/channels';
 
-export const Add = ({ onHide }) => {
+const Add = ({ onHide }) => {
   const { t } = useTranslation();
   const inputRef = useRef();
   const isOpen = useSelector(({ modal }) => modal.isOpen);
@@ -107,3 +107,5 @@ export const Add = ({ onHide }) => {
     </Modal>
   );
 };
+
+export default Add;

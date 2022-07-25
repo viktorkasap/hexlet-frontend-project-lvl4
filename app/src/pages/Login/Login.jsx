@@ -5,13 +5,13 @@ import {
   Row, Col, Container, Card, Image,
 } from 'react-bootstrap';
 
-import Form from './components/Form';
+import FormLogin from './components/Form/Form';
 
 import helloImg from '../../assets/img/hello.jpeg';
-import { useAuth } from '../../hooks';
-import { routes } from '../../routes';
+import useAuth from '../../hooks/useAuth';
+import routes from '../../routes/routes';
 
-export const Login = () => {
+const Login = () => {
   const auth = useAuth();
   const { t } = useTranslation();
   const navigate = useNavigate();
@@ -33,7 +33,7 @@ export const Login = () => {
               <Col className="col-12 d-flex align-items-center justify-content-center" md={6}>
                 <Image className="rounded-circle" src={helloImg} alt="Enter" />
               </Col>
-              <Form
+              <FormLogin
                 auth={auth}
                 loginPath={loginPath()}
                 navigate={navigate}
@@ -55,3 +55,5 @@ export const Login = () => {
     </Container>
   );
 };
+
+export default Login;

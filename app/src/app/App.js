@@ -10,14 +10,15 @@ import { ToastContainer } from 'react-toastify';
 
 import './styles.css';
 
-import {
-  Home, Login, Register, NotFound,
-} from '../pages';
-import { Navigation } from '../components';
+import Home from '../pages/Home/Home';
+import Login from '../pages/Login/Login';
+import Register from '../pages/Register/Register';
+import NotFound from '../pages/NotFound/NotFound';
+import Navigation from '../components/Navigation/Navigation';
 
 import { AuthContextProvider, ChatApiProvider } from '../context';
-import { useAuth } from '../hooks';
-import { routes } from '../routes';
+import useAuth from '../hooks/useAuth';
+import routes from '../routes/routes';
 
 const {
   homePage, loginPage, notFoundPage, signupPage,
@@ -31,7 +32,7 @@ const PrivateRoute = ({ children }) => {
   );
 };
 
-export const App = () => (
+const App = () => (
     <AuthContextProvider>
       <Router>
         <div className="d-flex flex-column h-100">
@@ -55,3 +56,5 @@ export const App = () => (
       <ToastContainer />
     </AuthContextProvider>
 );
+
+export { App as default };

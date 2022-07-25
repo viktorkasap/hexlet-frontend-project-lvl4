@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
 
-export const NotFound = () => (
+const NotFound = () => (
   <Container fluid className="h-100">
     <header className="header">
       <div className="container">
@@ -18,3 +18,5 @@ export const NotFound = () => (
     </main>
   </Container>
 );
+
+export default NotFound;

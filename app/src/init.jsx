@@ -5,8 +5,9 @@ import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider as StoreProvider } from 'react-redux';
 import { Provider as ProviderRollBar, ErrorBoundary } from '@rollbar/react';
 
-import { App } from './app/App';
-import { en, ru } from './locales';
+import App from './app/App';
+import en from './locales/en';
+import ru from './locales/ru';
 import store from './store';
 
 const rollbarConfig = {
@@ -16,7 +17,7 @@ const rollbarConfig = {
   captureUnhandledRejections: true,
 };
 
-export default async () => {
+const init = async () => {
   const clearRU = leoProfanity.getDictionary('ru');
   leoProfanity.add(clearRU);
   
@@ -43,3 +44,5 @@ export default async () => {
   
   return vdom;
 };
+
+export default init;

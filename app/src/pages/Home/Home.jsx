@@ -2,15 +2,16 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Container, Row } from 'react-bootstrap';
 
-import { fetchAll } from '../../api';
-import { Modal } from '../../components';
+import fetchAll from '../../api/fetchAll';
+import Modal from '../../components/Modal/Modal';
 import { addMessages } from '../../store/messages';
 import { open, close, setChannelId } from '../../store/modal';
 import { addChannels, setCurrentChannelId } from '../../store/channels';
 
-import { Channels, Messages } from './components';
+import Channels from './components/Channels/Channels';
+import Messages from './components/Messages/Messages';
 
-export const Home = () => {
+const Home = () => {
   const dispatch = useDispatch();
 
   const handleOpen = (type, id = null) => () => {
@@ -47,3 +48,5 @@ export const Home = () => {
     </Container>
   );
 };
+
+export default Home;

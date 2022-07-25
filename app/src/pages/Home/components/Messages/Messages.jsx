@@ -4,9 +4,13 @@ import { useSelector } from 'react-redux';
 import { selectors as channelsSelectors } from '../../../../store/channels';
 import { selectors as messagesSelectors } from '../../../../store/messages';
 
-import { Header, Body, Footer } from './components';
+// import { Header, Body, Footer } from './components';
+import Header from './components/Header/Header';
+import Body from './components/Body/Body';
+import Footer from './components/Footer/Footer';
 
-export const Messages = () => {
+
+const Messages = () => {
   const currentChannelId = useSelector(({ channels }) => channels.currentChannelId);
   const currentChannel = useSelector(
     (state) => channelsSelectors.selectById(state, currentChannelId),
@@ -24,3 +28,5 @@ export const Messages = () => {
     </div>
   );
 };
+
+export default Messages;

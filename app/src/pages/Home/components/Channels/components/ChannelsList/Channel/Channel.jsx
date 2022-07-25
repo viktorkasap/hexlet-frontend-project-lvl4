@@ -44,7 +44,7 @@ const ButtonChannel = ({
   </Button>
 );
 
-export const Channel = ({
+const Channel = ({
   channelData, currentChannelId, handleRename, handleRemove,
 }) => {
   const dispatch = useDispatch();
@@ -81,3 +81,5 @@ export const Channel = ({
     </Nav.Item>
   );
 };
+
+export default Channel;

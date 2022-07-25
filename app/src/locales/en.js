@@ -1,4 +1,4 @@
-export const en = {
+const en = {
   translation: {
     home: {
       channels: 'Channels',
@@ -59,3 +59,5 @@ export const en = {
     },
   },
 };
+
+export default en;

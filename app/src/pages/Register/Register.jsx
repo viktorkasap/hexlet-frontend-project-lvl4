@@ -4,14 +4,14 @@ import {
   Card, Col, Container, Image, Row,
 } from 'react-bootstrap';
 
-import Form from './components/Form';
+import FormLogin from './components/Form/Form';
 
 import regImg from '../../assets/img/reg.jpg';
 
-import { useAuth } from '../../hooks';
-import { routes } from '../../routes';
+import useAuth from '../../hooks/useAuth';
+import routes from '../../routes/routes';
 
-export const Register = () => {
+const Register = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const { homePage, signupPath } = routes;
@@ -31,7 +31,7 @@ export const Register = () => {
               <Col className="col-12 d-flex align-items-center justify-content-center" md={6}>
                 <Image className="rounded-circle" src={regImg} alt="Enter" />
               </Col>
-              <Form
+              <FormLogin
                 auth={auth}
                 signupPath={signupPath}
                 navigate={navigate}
@@ -44,3 +44,5 @@ export const Register = () => {
     </Container>
   );
 };
+
+export default Register;

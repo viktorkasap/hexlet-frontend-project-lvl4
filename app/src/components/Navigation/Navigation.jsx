@@ -3,8 +3,8 @@ import { useTranslation } from 'react-i18next';
 import { Container, Navbar, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import { useAuth } from '../../hooks';
-import { routes } from '../../routes';
+import useAuth from '../../hooks/useAuth';
+import routes from '../../routes/routes';
 
 const LogOut = () => {
   const auth = useAuth();
@@ -21,7 +21,7 @@ const LogOut = () => {
   );
 };
 
-export const Navigation = () => {
+const Navigation = () => {
   const { homePage } = routes;
 
   return (
@@ -33,3 +33,5 @@ export const Navigation = () => {
     </Navbar>
   );
 };
+
+export default Navigation;

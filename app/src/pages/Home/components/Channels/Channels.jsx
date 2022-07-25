@@ -3,9 +3,9 @@ import { Col, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { PlusSquare } from 'react-bootstrap-icons';
 
-import { ChannelsList } from './components';
+import ChannelsList from './components/ChannelsList/ChannelsList';
 
-export const Channels = ({ handleOpen }) => {
+const Channels = ({ handleOpen }) => {
   const { t } = useTranslation();
   const handleAdd = () => handleOpen('addChannel');
   const handleRename = (id) => handleOpen('renameChannel', id);
@@ -32,3 +32,5 @@ export const Channels = ({ handleOpen }) => {
     </Col>
   );
 };
+
+export default Channels;

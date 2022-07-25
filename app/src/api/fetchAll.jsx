@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-import { routes } from '../routes';
-import { getAuthHeader } from '../utils';
+import routes from '../routes/routes';
+import getAuthHeader from '../utils/getRequestHeaders';
 
-export const fetchAll = async () => {
+const fetchAll = async () => {
   const response = await axios.get(routes.data(), { headers: getAuthHeader() });
   return response.data;
 };
+
+export default fetchAll;

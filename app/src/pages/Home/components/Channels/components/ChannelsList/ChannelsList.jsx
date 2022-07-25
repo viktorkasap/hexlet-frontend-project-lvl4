@@ -2,10 +2,10 @@ import React from 'react';
 import { Nav } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
-import { Channel } from './Channel';
+import Channel from './Channel/Channel';
 import { selectors } from '../../../../../../store/channels';
 
-export const ChannelsList = ({ handleRename, handleRemove }) => {
+const ChannelsList = ({ handleRename, handleRemove }) => {
   const channels = useSelector(selectors.selectAll);
   const currentChannelId = useSelector((state) => state.channels.currentChannelId);
 
@@ -27,3 +27,5 @@ export const ChannelsList = ({ handleRename, handleRemove }) => {
     </Nav>
   );
 };
+
+export default ChannelsList;

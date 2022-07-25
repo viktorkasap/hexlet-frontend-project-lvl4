@@ -6,9 +6,9 @@ import { Form, InputGroup, Button } from 'react-bootstrap';
 import { ArrowRightSquare } from 'react-bootstrap-icons';
 import leoProfanity from 'leo-profanity';
 
-import { useChatApi } from '../../../../../../hooks';
+import useChatApi from '../../../../../../hooks/useChatApi';
 
-export const Footer = () => {
+const Footer = () => {
   const ICON_SIZE = 20;
   const { sendMessage } = useChatApi();
   const { t } = useTranslation();
@@ -59,3 +59,5 @@ export const Footer = () => {
     </div>
   );
 };
+
+export default Footer;
