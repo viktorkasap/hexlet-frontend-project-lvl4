@@ -30,7 +30,7 @@ const PrivateRoute = ({ children }) => {
   );
 };
 
-const App = () => (
+const App = ({ socket }) => (
   <AuthContextProvider>
     <Router>
       <div className="d-flex flex-column h-100">
@@ -40,7 +40,7 @@ const App = () => (
           <Route
             path={homePage()}
             element={(
-              <ChatApiProvider>
+              <ChatApiProvider socket={socket}>
                 <PrivateRoute>
                   <Home />
                 </PrivateRoute>

@@ -1,5 +1,5 @@
-import React, { createContext } from 'react';
-import { io } from 'socket.io-client';
+import React, { createContext, useEffect } from 'react';
+
 
 import store from '../store';
 
@@ -14,38 +14,40 @@ import {
 
 export const ChatApiContext = createContext({});
 
-export const ChatApiProvider = ({ children }) => {
-  const socket = io();
+export const ChatApiProvider = ({ socket, children }) => {
   const NEW_MESSAGE = 'newMessage';
   const NEW_CHANNEL = 'newChannel';
   const RENAME_CHANNEL = 'renameChannel';
   const REMOVE_CHANNEL = 'removeChannel';
 
-  socket.on(NEW_MESSAGE, (payload) => {
-    store.dispatch(addMessage(payload));
-  });
+  useEffect(() => {
+    socket.on(NEW_MESSAGE, (payload) => {
+      store.dispatch(addMessage(payload));
+    });
 
-  socket.on(NEW_CHANNEL, (payload) => {
-    store.dispatch(addChannel(payload));
+    socket.on(NEW_CHANNEL, (payload) => {
+      store.dispatch(addChannel(payload));
+    });
 
-    const { channels: { entities } } = store.getState();
-    const [, newChannel] = Object.entries(entities)
-      .find(([, channel]) => channel.name === payload.name);
+    socket.on(RENAME_CHANNEL, ({ id, name }) => {
+      store.dispatch(renameChannel({ id, changes: { name } }));
+    });
 
-    store.dispatch(setCurrentChannelId(newChannel.id));
-  });
-
-  socket.on(RENAME_CHANNEL, ({ id, name }) => {
-    store.dispatch(renameChannel({ id, changes: { name } }));
-  });
-
-  socket.on(REMOVE_CHANNEL, ({ id }) => {
-    store.dispatch(removeChannel(id));
-    store.dispatch(setDefaultChannelId(null));
-  });
+    socket.on(REMOVE_CHANNEL, ({ id }) => {
+      store.dispatch(removeChannel(id));
+      store.dispatch(setDefaultChannelId(null));
+    });
+  }, [socket]);
 
   const newChannel = (name) => {
-    socket.emit(NEW_CHANNEL, { name });
+   socket.emit(NEW_CHANNEL, { name }, (response) => {
+
+     // TODO вынести в отдельную функцию наружу
+      const {status, data: { id } } = response;
+      if (status === 'ok') {
+        store.dispatch(setCurrentChannelId(id));
+      }
+    });
   };
 
   const deleteChannel = (id) => {

@@ -10,6 +10,7 @@ import en from './locales/en';
 import ru from './locales/ru';
 import store from './store';
 
+
 const rollbarConfig = {
   accessToken: process.env.REACT_APP_ACCESS_TOKEN,
   environment: 'production',
@@ -17,7 +18,7 @@ const rollbarConfig = {
   captureUnhandledRejections: true,
 };
 
-const init = async () => {
+const init = async (socket) => {
   const clearRU = leoProfanity.getDictionary('ru');
   leoProfanity.add(clearRU);
 
@@ -35,7 +36,7 @@ const init = async () => {
       <ErrorBoundary errorMessage="Error in React render">
         <StoreProvider store={store}>
           <I18nextProvider i18n={i18n}>
-            <App />
+            <App socket={socket}/>
           </I18nextProvider>
         </StoreProvider>
       </ErrorBoundary>

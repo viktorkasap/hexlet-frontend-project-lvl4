@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
+/* eslint  no-param-reassign: 0 */  // --> OFF
 
 const initialState = {
-  isOpen: false,
   type: null,
   channelId: null,
 };
@@ -11,21 +11,15 @@ const modal = createSlice({
   initialState,
   reducers: {
     open: (state, { payload }) => {
-      const draft = state;
-      draft.isOpen = true;
-      draft.type = payload;
+      state.type = payload.type;
+      state.channelId = payload.id;
     },
     close: (state) => {
-      const draft = state;
-      draft.isOpen = false;
-      draft.type = null;
-    },
-    setChannelId: (state, { payload }) => {
-      const draft = state;
-      draft.channelId = payload;
+      state.type = null;
+      state.channelId = null;
     },
   },
 });
 
-export const { open, close, setChannelId } = modal.actions;
+export const { open, close } = modal.actions;
 export default modal.reducer;

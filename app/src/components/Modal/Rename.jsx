@@ -16,8 +16,7 @@ const Rename = ({ onHide }) => {
   const { newNameChannel } = useChatApi();
   const { t } = useTranslation();
   const inputRef = useRef();
-  const isOpen = useSelector(({ modal }) => modal.isOpen);
-  const [show, setShow] = useState(isOpen);
+  const [show, setShow] = useState(true);
   const channels = useSelector(selectors.selectAll);
   const channelsNames = channels.map(({ name }) => name);
   const channelId = useSelector(({ modal }) => modal.channelId);
@@ -26,7 +25,7 @@ const Rename = ({ onHide }) => {
   const notify = () => toast.success(t('channel.renamed'));
 
   const handleClose = () => {
-    setShow(!isOpen);
+    setShow(false);
     onHide();
   };
 

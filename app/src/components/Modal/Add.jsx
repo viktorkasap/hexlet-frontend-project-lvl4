@@ -15,14 +15,13 @@ import { selectors } from '../../store/channels';
 const Add = ({ onHide }) => {
   const { t } = useTranslation();
   const inputRef = useRef();
-  const isOpen = useSelector(({ modal }) => modal.isOpen);
-  const [show, setShow] = useState(isOpen);
+  const [show, setShow] = useState(true);
   const channelsNames = useSelector(selectors.selectAll).map(({ name }) => name);
   const notify = () => toast.success(t('channel.created'));
   const { newChannel } = useChatApi();
 
   const handleClose = () => {
-    setShow(!isOpen);
+    setShow(false);
     onHide();
   };
 

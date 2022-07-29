@@ -6,8 +6,13 @@ import Channel from './Channel/Channel';
 import { selectors } from '../../../../../../store/channels';
 
 const ChannelsList = ({ handleRename, handleRemove }) => {
-  const channels = useSelector(selectors.selectAll);
-  const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+  // const channels = useSelector(selectors.selectAll);
+  // const currentChannelId = useSelector((state) => state.channels.currentChannelId);
+
+  const {channels, currentChannelId } = useSelector((state) =>({
+    channels: Object.values(state.channels.entities),
+    currentChannelId: state.channels.currentChannelId,
+  }));
 
   return (
     <Nav fill variant="pills" className="d-flex flex-column px-2" as="ul">
