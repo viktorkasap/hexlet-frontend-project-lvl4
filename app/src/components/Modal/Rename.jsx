@@ -63,8 +63,9 @@ const Rename = ({ onHide }) => {
 
       if (!channelsNames.includes(cleanedName)) {
         newNameChannel({ id, name: cleanedName }, handleSubmitted);
-        return true;
       }
+
+      return true;
     },
   });
 

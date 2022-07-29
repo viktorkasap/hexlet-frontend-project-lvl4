@@ -9,7 +9,7 @@ const NotFound = () => {
   return (
     <Container fluid className="h-100">
       <div className="text-center">
-        <img className="img-fluid h-25" src={ notfoundImg } alt="notfound" style={{ width: 300 }} />
+        <img className="img-fluid h-25" src={notfoundImg} alt="notfound" style={ { width: 300 } } />
         <h1 className="h4 text-muted">{ t('notFound.header') }</h1>
         <p className="text-muted">
           { t('notFound.message') }
@@ -19,7 +19,8 @@ const NotFound = () => {
           </a>
         </p>
       </div>
-  </Container>
-)};
+    </Container>
+  );
+};
 
 export default NotFound;

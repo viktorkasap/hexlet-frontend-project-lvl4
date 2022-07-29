@@ -55,8 +55,9 @@ const Add = ({ onHide }) => {
 
       if (!channelsNames.includes(cleanedName)) {
         newChannel(leoProfanity.clean(name), handleSubmitted);
-        return true;
       }
+
+      return true;
     },
   });
 

@@ -21,14 +21,16 @@ export const AuthContextProvider = ({ children }) => {
     setLoggedIn(false);
   };
 
+  const value = {
+    loggedIn,
+    logIn,
+    logOut,
+    getAuthHeader,
+  };
+
   return (
     // eslint-disable-next-line react/jsx-no-constructed-context-values
-    <AuthContext.Provider value={{
-      loggedIn,
-      logIn,
-      logOut,
-      getAuthHeader,
-    }}>
+    <AuthContext.Provider value={ value }>
       { children }
     </AuthContext.Provider>
   );
