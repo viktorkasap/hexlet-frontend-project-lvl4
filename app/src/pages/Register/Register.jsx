@@ -16,12 +16,6 @@ const Register = () => {
   const navigate = useNavigate();
   const { homePage, signupPath } = routes;
 
-  useEffect(() => {
-    if (auth.loggedIn) {
-      navigate(homePage());
-    }
-  });
-
   return (
     <Container fluid className="h-100">
       <Row className="justify-content-center align-content-center h-100">
