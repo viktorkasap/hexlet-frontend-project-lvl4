@@ -1,4 +1,7 @@
-import React, { createContext, useEffect } from 'react';
+import React, {
+  createContext,
+  useEffect
+} from 'react';
 
 
 import store from '../store';
@@ -40,8 +43,10 @@ export const ChatApiProvider = ({ socket, children }) => {
   }, [socket]);
 
   const newChannel = (name, cb) => {
-   socket.emit(NEW_CHANNEL, { name }, (response) => {
-      const  {status, data: { id } } = response;
+    socket.emit(NEW_CHANNEL,
+      { name },
+      (response) => {
+      const  { status, data: { id } } = response;
 
       if (status === 'ok') {
         store.dispatch(setCurrentChannelId(id));
@@ -51,7 +56,9 @@ export const ChatApiProvider = ({ socket, children }) => {
   };
 
   const deleteChannel = (id, cb) => {
-    socket.emit(REMOVE_CHANNEL, { id }, (response) => {
+    socket.emit(REMOVE_CHANNEL,
+      { id },
+      (response) => {
       const { status } = response;
 
       if (status === 'ok') {
@@ -61,7 +68,9 @@ export const ChatApiProvider = ({ socket, children }) => {
   };
 
   const newNameChannel = ({ id, name }, cb) => {
-    socket.emit(RENAME_CHANNEL, { id, name }, (response) => {
+    socket.emit(RENAME_CHANNEL,
+      { id, name },
+      (response) => {
       const { status } = response;
 
       if (status === 'ok') {

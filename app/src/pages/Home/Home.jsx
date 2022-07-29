@@ -17,7 +17,7 @@ const Home = () => {
   const dispatch = useDispatch();
 
   const handleOpen = (type, id = null) => () => {
-    dispatch(open({type, id}));
+    dispatch(open({ type, id }));
   };
 
   const handleClose = () => {
@@ -42,7 +42,7 @@ const Home = () => {
         <Messages />
       </Row>
 
-      <Modal onHide={handleClose}/>
+      <Modal onHide={handleClose} />
     </Container>
   );
 };

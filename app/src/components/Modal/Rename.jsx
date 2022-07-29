@@ -18,9 +18,9 @@ const Rename = ({ onHide }) => {
   const [show, setShow] = useState(true);
   // const channels = useSelector(selectors.selectAll);
   // const channelId = useSelector(({ modal }) => modal.channelId);
-  const {channels, channelId } = useSelector((state) => ({
+  const { channels, channelId } = useSelector((state) => ({
     channels: Object.values(state.channels.entities),
-    channelId: state.modal.channelId
+    channelId: state.modal.channelId,
   }));
 
   const channelsNames = channels.map(({ name }) => name);
@@ -49,7 +49,7 @@ const Rename = ({ onHide }) => {
   const handleSubmitted = () => {
     handleClose();
     notify();
-  }
+  };
 
   const formik = useFormik({
     validationSchema,
@@ -63,6 +63,7 @@ const Rename = ({ onHide }) => {
 
       if (!channelsNames.includes(cleanedName)) {
         newNameChannel({ id, name: cleanedName }, handleSubmitted);
+        return true;
       }
     },
   });

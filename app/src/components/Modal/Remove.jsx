@@ -21,7 +21,7 @@ const Remove = ({ onHide }) => {
   const handleSubmitted = () => {
     handleClose();
     notify();
-  }
+  };
 
   const handleDelete = () => {
     deleteChannel(channelId, handleSubmitted);

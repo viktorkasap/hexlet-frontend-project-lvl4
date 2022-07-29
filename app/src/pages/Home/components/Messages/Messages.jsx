@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
+/* eslint  no-shadow: 0 */
 
 import { selectors as channelsSelectors } from '../../../../store/channels';
 

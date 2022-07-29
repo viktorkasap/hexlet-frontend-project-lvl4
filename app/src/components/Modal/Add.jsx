@@ -41,7 +41,7 @@ const Add = ({ onHide }) => {
   const handleSubmitted = () => {
     handleClose();
     notify();
-  }
+  };
 
   const formik = useFormik({
     validationSchema,
@@ -55,6 +55,7 @@ const Add = ({ onHide }) => {
 
       if (!channelsNames.includes(cleanedName)) {
         newChannel(leoProfanity.clean(name), handleSubmitted);
+        return true;
       }
     },
   });

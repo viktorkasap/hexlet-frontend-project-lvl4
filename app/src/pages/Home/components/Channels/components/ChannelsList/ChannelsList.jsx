@@ -8,7 +8,7 @@ const ChannelsList = ({ handleRename, handleRemove }) => {
   // const channels = useSelector(selectors.selectAll);
   // const currentChannelId = useSelector((state) => state.channels.currentChannelId);
 
-  const {channels, currentChannelId } = useSelector((state) =>({
+  const { channels, currentChannelId } = useSelector((state) => ({
     channels: Object.values(state.channels.entities),
     currentChannelId: state.channels.currentChannelId,
   }));

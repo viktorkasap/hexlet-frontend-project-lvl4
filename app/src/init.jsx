@@ -10,7 +10,6 @@ import en from './locales/en';
 import ru from './locales/ru';
 import store from './store';
 
-
 const rollbarConfig = {
   accessToken: process.env.REACT_APP_ACCESS_TOKEN,
   environment: 'production',
@@ -36,7 +35,7 @@ const init = async (socket) => {
       <ErrorBoundary errorMessage="Error in React render">
         <StoreProvider store={store}>
           <I18nextProvider i18n={i18n}>
-            <App socket={socket}/>
+            <App socket={socket} />
           </I18nextProvider>
         </StoreProvider>
       </ErrorBoundary>
