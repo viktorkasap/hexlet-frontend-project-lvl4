@@ -3,7 +3,6 @@ import { Nav } from 'react-bootstrap';
 import { useSelector } from 'react-redux';
 
 import Channel from './Channel/Channel';
-import { selectors } from '../../../../../../store/channels';
 
 const ChannelsList = ({ handleRename, handleRemove }) => {
   // const channels = useSelector(selectors.selectAll);
