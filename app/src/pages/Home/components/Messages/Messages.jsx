@@ -2,7 +2,6 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 
 import { selectors as channelsSelectors } from '../../../../store/channels';
-import { selectors as messagesSelectors } from '../../../../store/messages';
 
 // import { Header, Body, Footer } from './components';
 import Header from './components/Header/Header';
