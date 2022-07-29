@@ -14,7 +14,7 @@ import { selectors } from '../../store/channels';
 
 const Add = ({ onHide }) => {
   const { t } = useTranslation();
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   const [show, setShow] = useState(true);
   const channelsNames = useSelector(selectors.selectAll).map(({ name }) => name);
   const notify = () => toast.success(t('channel.created'));

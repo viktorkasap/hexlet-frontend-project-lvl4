@@ -47,7 +47,7 @@ const FormLogin = ({
   const authMessage = t('login.authFailed');
   const rollbar = useRollbar();
 
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   useEffect(() => {
     inputRef.current.focus();
   }, []);

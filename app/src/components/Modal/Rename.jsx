@@ -14,7 +14,7 @@ import useChatApi from '../../hooks/useChatApi';
 const Rename = ({ onHide }) => {
   const { newNameChannel } = useChatApi();
   const { t } = useTranslation();
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   const [show, setShow] = useState(true);
   // const channels = useSelector(selectors.selectAll);
   // const channelId = useSelector(({ modal }) => modal.channelId);
@@ -27,8 +27,6 @@ const Rename = ({ onHide }) => {
   const currentChannel = channels.find((channel) => channel.id === channelId);
   const { id, name } = currentChannel;
   const notify = () => toast.success(t('channel.renamed'));
-
-
 
   const handleClose = () => {
     setShow(false);

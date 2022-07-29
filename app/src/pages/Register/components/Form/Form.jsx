@@ -45,7 +45,7 @@ const FormLogin = ({
 }) => {
   const [authFailed, setAuthFailed] = useState(false);
   const { t } = useTranslation();
-  const inputRef = useRef();
+  const inputRef = useRef(null);
   const rollbar = useRollbar();
 
   useEffect(() => {
