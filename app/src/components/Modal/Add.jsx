@@ -38,19 +38,23 @@ const Add = ({ onHide }) => {
       .notOneOf(channelsNames, t('modal.uniq')),
   });
 
+  const handleSubmitted = () => {
+    handleClose();
+    notify();
+  }
+
   const formik = useFormik({
     validationSchema,
     initialValues: { name: '' },
     onSubmit: ({ name }) => {
       const cleanedName = leoProfanity.clean(name);
 
-      if (!channelsNames.includes(cleanedName)) {
-        newChannel(leoProfanity.clean(name));
+      if (channelsNames.includes(cleanedName)) {
+        return false;
+      }
 
-        if (!formik.errors.name) {
-          handleClose();
-          notify();
-        }
+      if (!channelsNames.includes(cleanedName)) {
+        newChannel(leoProfanity.clean(name), handleSubmitted);
       }
     },
   });

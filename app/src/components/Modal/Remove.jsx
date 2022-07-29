@@ -18,10 +18,13 @@ const Remove = ({ onHide }) => {
     onHide();
   };
 
-  const handleDelete = () => {
-    deleteChannel(channelId);
+  const handleSubmitted = () => {
     handleClose();
     notify();
+  }
+
+  const handleDelete = () => {
+    deleteChannel(channelId, handleSubmitted);
   };
 
   return (

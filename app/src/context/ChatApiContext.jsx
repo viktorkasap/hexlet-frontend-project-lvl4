@@ -39,23 +39,35 @@ export const ChatApiProvider = ({ socket, children }) => {
     });
   }, [socket]);
 
-  const newChannel = (name) => {
+  const newChannel = (name, cb) => {
    socket.emit(NEW_CHANNEL, { name }, (response) => {
+      const  {status, data: { id } } = response;
 
-     // TODO вынести в отдельную функцию наружу
-      const {status, data: { id } } = response;
       if (status === 'ok') {
         store.dispatch(setCurrentChannelId(id));
+        cb();
       }
     });
   };
 
-  const deleteChannel = (id) => {
-    socket.emit(REMOVE_CHANNEL, { id });
+  const deleteChannel = (id, cb) => {
+    socket.emit(REMOVE_CHANNEL, { id }, (response) => {
+      const { status } = response;
+
+      if (status === 'ok') {
+        cb();
+      }
+    });
   };
 
-  const newNameChannel = ({ id, name }) => {
-    socket.emit(RENAME_CHANNEL, { id, name });
+  const newNameChannel = ({ id, name }, cb) => {
+    socket.emit(RENAME_CHANNEL, { id, name }, (response) => {
+      const { status } = response;
+
+      if (status === 'ok') {
+        cb();
+      }
+    });
   };
 
   const sendMessage = (data) => {
