@@ -11,39 +11,11 @@ import {
 import { useTranslation } from 'react-i18next';
 import { useRollbar } from '@rollbar/react';
 
-const handleSubmitForm = async (props) => {
-  const {
-    auth, signupPath, authFailed, setAuthFailed, values, navigate, inputRef, redirectPath, rollbar,
-  } = props;
-
-  try {
-    const authResponse = await axios.post(signupPath(), values);
-
-    localStorage.setItem('userId', JSON.stringify(authResponse.data));
-    auth.logIn();
-    navigate(redirectPath);
-  } catch (err) {
-    if (err.isAxiosError && err.response.status === 401) {
-      console.log(`ERROR 401: ${err.message}`);
-      console.log('authFailed:', authFailed);
-
-      rollbar.err(err);
-
-      inputRef.current.select();
-      setAuthFailed(true);
-      return false;
-    }
-
-    throw err;
-  }
-
-  return true;
-};
-
 const FormLogin = ({
   auth, signupPath, navigate, redirectPath,
 }) => {
   const [authFailed, setAuthFailed] = useState(false);
+  const [existingUser, setExistingUser] = useState(false);
   const { t } = useTranslation();
   const inputRef = useRef(null);
   const rollbar = useRollbar();
@@ -70,24 +42,46 @@ const FormLogin = ({
   const formik = useFormik({
     validationSchema,
     initialValues: { username: '', password: '', passwordConfirm: '' },
-    onSubmit: (values) => handleSubmitForm(
-      {
-        auth,
-        signupPath,
-        authFailed,
-        setAuthFailed,
-        values,
-        navigate,
-        redirectPath,
-        inputRef,
-        rollbar,
-      },
-    ),
+    onSubmit: async (values) => {
+      try {
+        const authResponse = await axios.post(signupPath(), values);
+
+        localStorage.setItem('userId', JSON.stringify(authResponse.data));
+        auth.logIn();
+        navigate(redirectPath);
+      } catch (err) {
+        if (err.isAxiosError && err.response.status === 401) {
+          inputRef.current.select();
+          setAuthFailed(true);
+          rollbar.err(err);
+
+          return false;
+        }
+
+        if (err.isAxiosError && err.response.status === 409) {
+          inputRef.current.select();
+          setAuthFailed(true);
+          setExistingUser(true);
+          rollbar.err(err);
+
+          return false;
+        }
+
+        throw err;
+      }
+    }
   });
 
   const {
-    touched, errors, values, handleSubmit, handleChange,
+    touched, errors, values, handleSubmit, handleChange
   } = formik;
+
+  const onChange = (e) => {
+    if (existingUser) {
+      setExistingUser(false);
+    }
+    handleChange(e);
+  }
 
   return (
     <Form className="col-12 col-md-6 mt-3 mt-mb-0" onSubmit={handleSubmit}>
@@ -100,11 +94,16 @@ const FormLogin = ({
           placeholder={t('signup.username')}
           ref={inputRef}
           value={values.username}
-          onChange={handleChange}
-          isInvalid={(touched.username && !!errors.username) || authFailed}
+          onChange={onChange}
+          isInvalid={(touched.username && !!errors.username && existingUser) || authFailed}
         />
 
-        <FormControl.Feedback type="invalid" tooltip>{ errors.username }</FormControl.Feedback>
+        {(existingUser || !!errors.username) &&
+          <FormControl.Feedback
+            type="invalid"
+            tooltip>{existingUser ? t('signup.exist') : errors.username}
+          </FormControl.Feedback>
+        }
       </FloatingLabel>
 
       <FloatingLabel label={t('signup.password')} controlId="password" className="mb-3">
@@ -118,7 +117,7 @@ const FormLogin = ({
           isInvalid={(touched.password && !!errors.password) || authFailed}
         />
 
-        <FormControl.Feedback type="invalid" tooltip>{ errors.password }</FormControl.Feedback>
+        {!!errors.password && <FormControl.Feedback type="invalid" tooltip>{ errors.password }</FormControl.Feedback>}
       </FloatingLabel>
 
       <FloatingLabel label={t('signup.confirm')} controlId="password-confirm" className="mb-4">
@@ -132,7 +131,9 @@ const FormLogin = ({
           isInvalid={(touched.passwordConfirm && !!errors.passwordConfirm) || authFailed}
         />
 
-        <FormControl.Feedback type="invalid" tooltip>{ errors.passwordConfirm }</FormControl.Feedback>
+        {!!errors.passwordConfirm
+          && <FormControl.Feedback type="invalid" tooltip>{ errors.passwordConfirm }</FormControl.Feedback>
+        }
       </FloatingLabel>
 
       <Button
