@@ -39,8 +39,8 @@ export const ChatApiProvider = ({ socket, children }) => {
     });
 
     socket.on(REMOVE_CHANNEL, ({ id }) => {
+      store.dispatch(setDefaultChannelId(id));
       store.dispatch(removeChannel(id));
-      store.dispatch(setDefaultChannelId(null));
     });
   }, [socket]);
 

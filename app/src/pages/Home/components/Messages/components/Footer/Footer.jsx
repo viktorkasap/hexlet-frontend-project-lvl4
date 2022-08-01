@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef, useEffect } from 'react';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -12,6 +12,7 @@ const Footer = () => {
   const ICON_SIZE = 20;
   const { sendMessage } = useChatApi();
   const { t } = useTranslation();
+  const inputRef = useRef(null);
   const { username } = JSON.parse(localStorage.getItem('userId'));
   const currentChannelId = useSelector(({ channels }) => channels.currentChannelId);
 
@@ -26,6 +27,10 @@ const Footer = () => {
       }
     },
   });
+
+  useEffect(() => {
+    inputRef.current.focus();
+  }, [formik]);
 
   const {
     values,
@@ -42,7 +47,7 @@ const Footer = () => {
             <Form.Control
               className="border-0 p-0 ps-2"
               name="message"
-              autoComplete="message"
+              ref={inputRef}
               placeholder={t('channel.message')}
               aria-label={t('message.new')}
               value={values.message}

@@ -19,7 +19,7 @@ const channelsSlice = createSlice({
       state.currentChannelId = action.payload;
     }),
     setDefaultChannelId: ((state, action) => {
-      if (!action.payload) {
+      if (action.payload === state.currentChannelId) {
         state.currentChannelId = state.defaultChannelId;
       }
     }),
