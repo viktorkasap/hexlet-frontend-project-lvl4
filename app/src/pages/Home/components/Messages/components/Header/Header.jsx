@@ -7,7 +7,7 @@ const Header = ({ channelName, count }) => {
   return (
     <div className="bg-light mb-4 p-3 shadow-sm small">
       <p className="m-0 fw-bold">
-        #
+        #{' '}
         { channelName }
       </p>
       <span className="text-muted">

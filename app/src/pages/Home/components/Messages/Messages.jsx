@@ -10,19 +10,12 @@ import Body from './components/Body/Body';
 import Footer from './components/Footer/Footer';
 
 const Messages = () => {
-  // const currentChannelId = useSelector(({ channels }) => channels.currentChannelId);
-  // const currentChannel = useSelector(
-  //   (state) => channelsSelectors.selectById(state, currentChannelId),
-  // );
-  // const allMessages = useSelector(messagesSelectors.selectAll);
-  //
-
-  const { currentChannelId, currentChannel, allMessages } = useSelector((state) => ({
+  const { currentChannelId, allMessages } = useSelector((state) => ({
     currentChannelId: state.channels.currentChannelId,
-    currentChannel: (state) => channelsSelectors.selectById(state, state.channels.currentChannelId),
     allMessages: Object.values(state.messages.entities),
   }));
   const messages = allMessages.filter(({ channelId }) => channelId === currentChannelId);
+  const currentChannel = useSelector((state) => channelsSelectors.selectById(state, currentChannelId));
 
   return (
     <div className="col p-0 h-100">
