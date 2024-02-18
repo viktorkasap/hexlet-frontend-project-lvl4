@@ -27,7 +27,7 @@ const init = async (socket) => {
     .use(initReactI18next)
     .init({
       resources: { en, ru },
-      fallbackLng: 'ru',
+      fallbackLng: 'en',
     });
 
   const vdom = (

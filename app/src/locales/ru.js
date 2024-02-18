@@ -1,20 +1,20 @@
 const ru = {
   translation: {
     home: {
-      channels: 'Каналы',
-      count: '{{ count }} сообщений',
-      count_one: '{{count}} сообщение',
-      count_few: '{{count}} сообщения',
-      count_many: '{{count}} сообщений',
+      channels: 'Channels',
+      count: '{{ count }} messages',
+      count_one: '{{count}} message',
+      count_few: '{{count}} message',
+      count_many: '{{count}} message',
     },
     channel: {
-      remove: 'Удалить',
-      rename: 'Переименовать',
-      name: 'Имя канала',
-      message: 'Введите сообщение',
-      created: 'Канал создан',
-      renamed: 'Канал переименован',
-      removed: 'Канал удалён',
+      remove: 'Remove',
+      rename: 'Rename',
+      name: 'Channel name',
+      message: 'Input your message',
+      created: 'Channel created',
+      renamed: 'Channel renamed',
+      removed: 'Channel removed',
       manage: 'Управление каналом',
     },
     login: {
